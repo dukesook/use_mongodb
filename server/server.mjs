@@ -1,9 +1,19 @@
 import path from 'path';
 import express from 'express'; // $ npm install express
-
+import mongoose from 'mongoose'; // $ npm install mongoose
+import Person from './person.mjs';
 
 const app = express();
 const PORT = 3000;
+
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true}).catch(error => console.log("Something went wrong: " + error));
+
+// Content-Type: application/x-www-form-urlencoded (used by HTML <form> submissions)
+app.use(express.urlencoded());
+
+// Content-Type: application/json
+app.use(express.urlencoded()); // middleware for express to parse incoming requests with url-encoded payloads
+
 
 // Serve static files from "public" folder (all .html, .css, & .js files)
 app.use(express.static(path.join(process.cwd(), '../public')));
@@ -15,10 +25,12 @@ app.get('/', (req, res) => {
 
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/submit', (req, res) => {
+app.post('/upload', (req, res) => {
   console.log('Form submitted');
   // log request:
   console.log(req.body);
+  // get name, date, and age from req.body:
+  const { name, date, city, age } = req.body;
   res.send('Form received');
 });
 
