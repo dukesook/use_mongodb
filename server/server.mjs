@@ -1,12 +1,12 @@
 import path from 'path';
 import express from 'express'; // $ npm install express
 import mongoose from 'mongoose'; // $ npm install mongoose
-import Person from './person.mjs';
+import personModel from './person.mjs';
 
 const app = express();
 const PORT = 3000;
 
-mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true}).catch(error => console.log("Something went wrong: " + error));
+mongoose.connect('mongodb://localhost:27017/myDatabase', {useNewUrlParser: true}).catch(error => console.log("Something went wrong: " + error));
 
 // Content-Type: application/x-www-form-urlencoded (used by HTML <form> submissions)
 app.use(express.urlencoded());
@@ -31,7 +31,12 @@ app.post('/upload', (req, res) => {
   console.log(req.body);
   // get name, date, and age from req.body:
   const { name, date, city, age } = req.body;
-  res.send('Form received');
+  let newPerson = new personModel(req.body);
+  newPerson.save().then(function(){
+    res.send("Added new person to database!");
+  }).catch(function(err){
+    res.err("Failed to add new person to database!");
+  });
 });
 
 // Start server

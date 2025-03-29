@@ -9,6 +9,6 @@ const personSchema = new mongoose.Schema({
 });
 
 const modelName = 'Person'; // MongoDB collection name - 'people' (pluralized & lower case)
-const Person = mongoose.model(modelName, personSchema);
+const PersonModel = mongoose.model(modelName, personSchema);
 
-export default Person;
+export default PersonModel;
