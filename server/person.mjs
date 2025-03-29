@@ -8,6 +8,10 @@ const personSchema = new mongoose.Schema({
   city: String
 });
 
+personSchema.statics.listAllPeople = function() {
+  return this.find({});
+};
+
 const modelName = 'Person'; // MongoDB collection name - 'people' (pluralized & lower case)
 const PersonModel = mongoose.model(modelName, personSchema);
 
