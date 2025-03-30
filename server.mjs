@@ -50,7 +50,7 @@ app.get('/list', (req, res) => {
   console.log('Get request:  list')
   personModel.listAllPeople().then(function(people){
     console.log(people)
-    res.send('listing all people...')
+    res.render('list', {people:people});
     // res.render("pages/garage", {cars:cars});
 }).catch(function(error){ 
     res.error("Something went wrong!" + error );
