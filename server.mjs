@@ -21,11 +21,7 @@ app.set("view engine", "ejs");
 
 // Add a route for the root URL
 app.get('/', (req, res) => {
-  // res.sendFile(path.join(process.cwd(), '../public/index.html'));
-  res.render('index', {
-    message: 'Hello, EJS!',
-    username: 'Sook'
-  });
+  res.render('index');
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -42,7 +38,7 @@ app.post('/upload', (req, res) => {
   const { name, date, city, age } = req.body;
   let newPerson = new personModel(req.body);
   newPerson.save().then(function(){
-    res.send("Added new person to database!");
+    res.render('response', req.body);
   }).catch(function(err){
     res.err("Failed to add new person to database!");
   });
