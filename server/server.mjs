@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express'; // $ npm install express
 import mongoose from 'mongoose'; // $ npm install mongoose
+// npm install ejs
 import personModel from './person.mjs';
 
 const app = express();
@@ -14,16 +15,26 @@ app.use(express.urlencoded());
 // Content-Type: application/json
 app.use(express.urlencoded()); // middleware for express to parse incoming requests with url-encoded payloads
 
+// Use embedded JavaScript (EJS) as the template engine
+app.set("view engine", "ejs");
 
 // Serve static files from "public" folder (all .html, .css, & .js files)
-app.use(express.static(path.join(process.cwd(), '../public')));
+// app.use(express.static(path.join(process.cwd(), '../public')));
 
 // Add a route for the root URL
 app.get('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), '../public/index.html'));
+  // res.sendFile(path.join(process.cwd(), '../public/index.html'));
+  res.render('index', {
+    message: 'Hello, EJS!',
+    username: 'Sook'
+  });
 });
 
 app.use(express.urlencoded({ extended: true }));
+
+app.get('/upload', (req, res) => {
+  res.render('upload');
+})
 
 app.post('/upload', (req, res) => {
   console.log('Form submitted');
