@@ -7,5 +7,12 @@
 </head>
 <body>
   <h1>Query</h1>
+  <%- include('partials/header.ejs') %>
+  <h2>Query By Age</h2>
+  <form action="/query" method="POST">
+    <label for="age">Enter Age:</label>
+    <input type="number" id="age" name="age" required>
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>

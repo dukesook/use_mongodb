@@ -1,7 +1,7 @@
 import express from 'express'; // $ npm install express
 import mongoose from 'mongoose'; // $ npm install mongoose
 // npm install ejs
-import personModel from './models/person.mjs';
+import PersonModel from './models/person.mjs';
 
 const app = express();
 const PORT = 3000;
@@ -36,7 +36,7 @@ app.post('/upload', (req, res) => {
   console.log(req.body);
   // get name, date, and age from req.body:
   const { name, date, city, age } = req.body;
-  let newPerson = new personModel(req.body);
+  let newPerson = new PersonModel(req.body);
   newPerson.save().then(function(){
     res.render('response', req.body);
   }).catch(function(err){
@@ -45,7 +45,7 @@ app.post('/upload', (req, res) => {
 });
 
 app.get('/list', (req, res) => {
-  personModel.listAllPeople().then(function(people){
+  PersonModel.listAllPeople().then(function(people){
     console.log(people)
     res.render('list', {people:people});
 }).catch(function(error){ 
@@ -53,10 +53,16 @@ app.get('/list', (req, res) => {
 });
 })
 
-app.get('/query', (req, res) => {
+app.get('/query', async (req, res) => {
+  const results = await PersonModel.find({ age: { $gte: 18 } });
+  console.log(results);
   res.render('query');
 })
 
+app.post('/query', (req, res) => {
+  console.log('Query submitted');
+  console.log(req.body);
+});
 
 // Start server
 app.listen(PORT, () => {
