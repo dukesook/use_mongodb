@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My First EJS Page</title>
+</head>
+<body>
+  <h1>Hello MongoDB</h1>
+  <%- include('partials/header.ejs') %>
+
+  <p>
+    For this assignment, you must create a web application that allows you to:
+    <ul>
+      <li>Create, Read, and Query documents within a MongoDB collection.</li>
+      <li>These documents should represent some kind of object or record of your choosing (e.g. a scientific data set, an inventory, a user group, etc.)</li>
+      <li>Each document must have at least 4 different fields, of at least 3 different types, e.g. string, number, and date. </li>
+    </ul>
+    
+    <p>Note that these fields do not include the requisite id for each document. </p>
+      <ul>
+        <li>To create new documents, your node.js application should serve a simple html
+          form at the path <strong>/upload</strong> that allows for the entry of a new document into the
+          mongodb collection using an HTTP post request.</li>
+          <li>
+            Your node.js application should serve a page at the <strong>/list</strong> path that lists all
+            objects within your collection. This page can be either rendered server side
+            or client side using AJAX to a rest route.
+          </li>
+          <li>
+            Your node.js application should finally serve a page at the <strong>/query</strong> path that takes some input
+            into a form and makes a parameterized query of your data set. For example, given a number,
+            display all inventoried items that cost less than that price sorted from least expensive to
+            most. This request must be made via AJAX from the page at /query, i.e., using XMLHttpRequest
+            or Fetch.
+
+          </li>
+        </ul>
+    
+    <p>Your application should support at least two rest routes: one POST route at /<object name> to
+      create an object in your dataset, and one GET route at /<object name>s that takes query parameters
+      to make to return query result of objects.</p>
+
+      <p>Make sure to include a readme with all of your route names and example queries.</p>
+  </p>
+  
+
+
+</body>
+</html>
