@@ -1,8 +1,7 @@
-import path from 'path';
 import express from 'express'; // $ npm install express
 import mongoose from 'mongoose'; // $ npm install mongoose
 // npm install ejs
-import personModel from './person.mjs';
+import personModel from './models/person.mjs';
 
 const app = express();
 const PORT = 3000;
@@ -17,9 +16,6 @@ app.use(express.urlencoded()); // middleware for express to parse incoming reque
 
 // Use embedded JavaScript (EJS) as the template engine
 app.set("view engine", "ejs");
-
-// Serve static files from "public" folder (all .html, .css, & .js files)
-// app.use(express.static(path.join(process.cwd(), '../public')));
 
 // Add a route for the root URL
 app.get('/', (req, res) => {
