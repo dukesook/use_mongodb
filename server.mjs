@@ -53,6 +53,11 @@ app.get('/list', (req, res) => {
 });
 })
 
+app.get('/query', (req, res) => {
+  res.render('query');
+})
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
