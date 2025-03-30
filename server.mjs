@@ -51,7 +51,6 @@ app.get('/list', (req, res) => {
   personModel.listAllPeople().then(function(people){
     console.log(people)
     res.render('list', {people:people});
-    // res.render("pages/garage", {cars:cars});
 }).catch(function(error){ 
     res.error("Something went wrong!" + error );
 });

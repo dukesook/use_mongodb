@@ -8,10 +8,25 @@
 <body>
   <h1>List People</h1>
   <%- include('partials/header.ejs') %>
-  <ul>
-    <% people.forEach(item => { %>
-      <li><%= item.name %></li>
-    <% }) %>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% people.forEach(person => { %>
+        <tr>
+          <td><%= person.name %></td>
+          <td><%= person.date %></td>
+          <td><%= person.age %></td>
+          <td><%= person.city %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </body>
 </html>
