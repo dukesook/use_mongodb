@@ -14,6 +14,8 @@ app.use(express.urlencoded());
 // Content-Type: application/json
 app.use(express.urlencoded()); // middleware for express to parse incoming requests with url-encoded payloads
 
+app.use(express.static('public'));
+
 // Use embedded JavaScript (EJS) as the template engine
 app.set("view engine", "ejs");
 
@@ -47,7 +49,6 @@ app.post('/upload', (req, res) => {
 });
 
 app.get('/list', (req, res) => {
-  console.log('Get request:  list')
   personModel.listAllPeople().then(function(people){
     console.log(people)
     res.render('list', {people:people});
