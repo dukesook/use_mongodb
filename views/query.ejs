@@ -12,6 +12,9 @@
   <%- include('partials/header.ejs') %>
   <h2>Enter Query</h2>
   <p>All entries are optional</p>
+
+  <button id="clearEntriesButton">Clear Entries</button>
+
   <form id="queryForm">
     <label for="name">Enter Name:</label>
     <input type="text" id="name" name="name" value="Devon">
@@ -19,6 +22,10 @@
     
     <label for="age">Enter Age:</label>
     <input type="number" id="age" name="age" value="30">
+    <br>
+
+    <label for="city">Enter City:</label>
+    <input type="text" id="city" name="city" value="Provo">
     <br>
 
     <button type="submit">Submit</button>

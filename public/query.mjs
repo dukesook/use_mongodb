@@ -1,5 +1,6 @@
 const form = document.getElementById('queryForm');
 const resultsContainer = document.getElementById('resultsContainer');
+const clearEntriesButton = document.getElementById('clearEntriesButton');
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault(); // Prevent the default form submission
@@ -57,4 +58,13 @@ function displayResults(results) {
   });
 
   resultsContainer.appendChild(table);
+}
+
+clearEntriesButton.onclick = function() {
+  // form.reset(); // resets to defaults
+  const inputs = form.querySelectorAll('input');
+  inputs.forEach(input => {
+    input.value = ''; // Set value to empty string
+  });
+  resultsContainer.innerHTML = ''; // Clear previous results
 }
