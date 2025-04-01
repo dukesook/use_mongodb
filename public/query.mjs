@@ -5,19 +5,25 @@ const form = document.getElementById('queryForm');
 form.addEventListener('submit', async (event) => {
   event.preventDefault(); // Prevent the default form submission
 
-  // 1. Grab form values
+  // Grab form values
   const formData = new FormData(form);
+
+  // Remove empty values
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+    if (value === '') {
+      formData.delete(key);
+    }
+  }
   const data = Object.fromEntries(formData.entries());
 
-  // 2. Convert form data to query string
+  
+  // Send GET request
   const queryString = new URLSearchParams(data).toString();
-
-  // 3. Send GET request with query string
   const response = await fetch(`/run-query?${queryString}`);
-  console.log(response); // You’ll display this next
+  console.log(response);
 
-  // 4. Parse JSON response
   const results = await response.json();
-  console.log(results); // You’ll display this next
+  console.log(results);
 
 })
