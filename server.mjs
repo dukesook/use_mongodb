@@ -8,10 +8,12 @@ const PORT = 3000;
 
 mongoose.connect('mongodb://localhost:27017/myDatabase', {useNewUrlParser: true}).catch(error => console.log("Something went wrong: " + error));
 
+// WARNING: body-parser deprecated undefined extended: provide extended option
 // Content-Type: application/x-www-form-urlencoded (used by HTML <form> submissions)
 app.use(express.urlencoded());
 
 // Content-Type: application/json
+// WARNING: body-parser deprecated undefined extended: provide extended option
 app.use(express.urlencoded()); // middleware for express to parse incoming requests with url-encoded payloads
 
 app.use(express.static('public'));
@@ -53,16 +55,26 @@ app.get('/list', (req, res) => {
 });
 })
 
-app.get('/query', async (req, res) => {
-  const results = await PersonModel.find({ age: { $gte: 18 } });
-  console.log(results);
+app.get('/query', (req, res) => {
   res.render('query');
 })
 
-app.post('/query', (req, res) => {
-  console.log('Query submitted');
-  console.log(req.body);
-});
+app.get('/run-query', async (req, res) => {
+  console.log(req.query);
+
+  const projection = { 
+    _id: 0,
+    __v: 0
+  };
+
+  const results = await PersonModel.find(req.query, projection);
+  console.log(results);
+  res.json(results);
+  // const results = await PersonModel.find({ age: { $eq: age } });
+  // const results = await PersonModel.find({ age: { $gte: 18 } });
+})
+
+
 
 // Start server
 app.listen(PORT, () => {

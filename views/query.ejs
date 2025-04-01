@@ -4,14 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src='./query.mjs' type="module"></script>
 </head>
 <body>
   <h1>Query</h1>
   <%- include('partials/header.ejs') %>
   <h2>Query By Age</h2>
-  <form action="/query" method="POST">
+  <form id="queryForm">
+    <label for="name">Enter Name:</label>
+    <input type="text" id="name" name="name" value="Devon">
+    <br>
+    
     <label for="age">Enter Age:</label>
-    <input type="number" id="age" name="age" required>
+    <input type="number" id="age" name="age" value="30">
+    <br>
+
     <button type="submit">Submit</button>
   </form>
 </body>
