@@ -8,18 +8,23 @@ form.addEventListener('submit', async (event) => {
   // Get Form Data
   const formData = new FormData(form);
 
-  // Remove empty values
-  for (const [key, value] of formData.entries()) {
-    if (value === '') {
-      formData.delete(key);
+  // Remove Empty Entries
+  const data = Object.fromEntries(formData.entries());
+  for ( const key in data ) {
+    if ( data[key] === '' ) {
+      delete data[key];
     }
   }
-  const data = Object.fromEntries(formData.entries());
 
-  
-  // Send GET request
+  // Create Fetch Request URL  
   const queryString = new URLSearchParams(data).toString();
-  const httpResponse = await fetch(`/run-query?${queryString}`);
+  let fetchRequest = `/run-query?${queryString}`;
+  if (Object.keys(data).length === 0) {
+    fetchRequest = '/run-query'; // If no data, just run the default query.
+  }
+
+  // Fetch
+  const httpResponse = await fetch(fetchRequest);
 
   // Display Results
   const results = await httpResponse.json();
