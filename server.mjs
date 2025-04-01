@@ -42,7 +42,8 @@ app.post('/upload', (req, res) => {
   newPerson.save().then(function(){
     res.render('response', req.body);
   }).catch(function(err){
-    res.err("Failed to add new person to database!");
+    console.error("Failed to add new person to database:", err);
+    res.status(500).send("Failed to add new person to database.");
   });
 });
 
@@ -51,7 +52,8 @@ app.get('/list', (req, res) => {
     console.log(people)
     res.render('list', {people:people});
 }).catch(function(error){ 
-    res.error("Something went wrong!" + error );
+  console.error("Failed to add new person to database:", err);
+  res.status(500).send("Failed to add new person to database.");
 });
 })
 
