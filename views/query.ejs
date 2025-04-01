@@ -9,7 +9,8 @@
 <body>
   <h1>Query</h1>
   <%- include('partials/header.ejs') %>
-  <h2>Query By Age</h2>
+  <h2>Enter Query</h2>
+  <p>All entries are optional</p>
   <form id="queryForm">
     <label for="name">Enter Name:</label>
     <input type="text" id="name" name="name" value="Devon">
@@ -21,5 +22,10 @@
 
     <button type="submit">Submit</button>
   </form>
+
+  <h2>Results</h2>
+  <div id="resultsContainer"></div>
+  
+
 </body>
 </html>
