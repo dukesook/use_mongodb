@@ -6,7 +6,9 @@ import PersonModel from './models/person.mjs';
 const app = express();
 const PORT = 3000;
 
-mongoose.connect('mongodb://localhost:27017/myDatabase', {useNewUrlParser: true}).catch(error => console.log("Something went wrong: " + error));
+// const dbUri = 'mongodb://localhost:27017/myDatabase'; // For Local Host
+const dbUri = 'mongodb://root:example@mongo:27017'  // For Podman Container
+mongoose.connect(dbUri, {useNewUrlParser: true}).catch(error => console.log("Something went wrong: " + error));
 
 // WARNING: body-parser deprecated undefined extended: provide extended option
 // Content-Type: application/x-www-form-urlencoded (used by HTML <form> submissions)
