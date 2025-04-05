@@ -80,7 +80,11 @@ app.get('/run-query', async (req, res) => {
 
 
 
+// Bind to all network interfaces so the server is accessible from outside the container.
+// Without this, the server only listens on localhost (127.0.0.1) and cannot be reached externally.
+const HOST = '0.0.0.0';
+
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server listening on http://${HOST}:${PORT}`);
 });
