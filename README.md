@@ -1,5 +1,5 @@
 # use_mongodb
-Deploy a MongoDB application for CS 532 assignment #4
+Deploy a MongoDB application for CS 532 assignment #4. Refer to the provided [template](https://github.com/bilhamil/CS382-Podman-Example)
 
 ## Link
 - https://dsookhoo.cs382.net
